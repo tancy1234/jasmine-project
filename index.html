@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F8F0E5">
+
+  <title>谢谢你，Jasmine</title>
+
+  <style>
+    :root {
+      --cream: #F8F0E5;
+      --cream-light: #FFFDF8;
+      --warm-brown: #725747;
+      --brown-dark: #49372E;
+      --sage: #89957A;
+      --sage-light: #E5E8DC;
+      --gold: #C5A46D;
+      --pink: #EBD5C9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    }
+
+    body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: clip;
+    background: #EAE2D8;
+    color: var(--brown-dark);
+    font-family:
+        "PingFang SC",
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        sans-serif;
+    }
+
+    button {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 手机尺寸网页容器 */
+
+    .phone {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    background: var(--cream-light);
+    box-shadow: 0 0 25px rgba(80, 55, 35, 0.08);
+    }
+
+    /* 手机优先的基础布局 */
+
+    html {
+    width: 100%;
+    scroll-behavior: smooth;
+    }
+
+    body {
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    }
+
+    .section {
+    padding: 42px 22px;
+    }
+
+    .hero {
+    padding: 42px 22px 38px;
+    }
+
+    .section-title {
+    font-size: 26px;
+    line-height: 1.45;
+    }
+
+    .hero h1 {
+    font-size: 32px;
+    }
+
+    .photo-frame {
+    width: 100%;
+    max-width: 270px;
+    }
+
+    /* =========================
+       第一页：开启礼物
+    ========================= */
+
+    .welcome {
+      position: relative;
+      display: flex;
+      min-height: 100vh;
+      min-height: 100dvh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 32px 24px;
+      background:
+        radial-gradient(
+          ellipse at 50% 43%,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(248, 240, 229, 0.8) 50%,
+          rgba(235, 213, 201, 0.55) 100%
+        );
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .welcome::before,
+    .welcome::after {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border: 1px solid rgba(197, 164, 109, 0.23);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .welcome::before {
+      top: -130px;
+      right: -100px;
+    }
+
+    .welcome::after {
+      bottom: -145px;
+      left: -110px;
+    }
+
+    .welcome-cross {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 48px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 78px;
+      font-weight: 300;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(197, 164, 109, 0.25);
+      animation: gentleGlow 3s ease-in-out infinite;
+    }
+
+    /* 第一页只显示十字架装饰和开启按钮 */
+
+    .open-button {
+      position: relative;
+      z-index: 1;
+      width: min(270px, 100%);
+      min-height: 58px;
+      padding: 16px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50px;
+      background: linear-gradient(
+        135deg,
+        #A7AD91,
+        #879579
+      );
+      color: #FFFFFF;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(105, 120, 91, 0.20);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .open-button:active {
+      transform: scale(0.97);
+      box-shadow: 0 4px 12px rgba(105, 120, 91, 0.18);
+    }
+
+    .welcome.leaving {
+      opacity: 0;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    @keyframes gentleGlow {
+      0%, 100% {
+        opacity: 0.8;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+    }
+
+    /* =========================
+       第二页：纪念主页
+    ========================= */
+
+    /* =========================
+    顶部导航栏
+    ========================= */
+
+    .site-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    display: flex;
+    width: 100%;
+    max-width: 430px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 16px;
+
+    background: rgba(255, 253, 248, 0.96);
+    border-bottom: 1px solid rgba(197, 164, 109, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    }
+
+    .site-logo {
+    color: var(--warm-brown);
+    font-family: Georgia, serif;
+    font-size: 19px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    }
+
+    .menu-toggle {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 7px;
+    border: 1px solid rgba(197, 164, 109, 0.45);
+    border-radius: 10px;
+    background: var(--cream);
+    cursor: pointer;
+    }
+
+    .menu-toggle span {
+    display: block;
+    width: 17px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--warm-brown);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* 点击后，三条线变成 X */
+
+    .menu-toggle.active span:first-child {
+    transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    }
+
+    .menu-toggle.active span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* 横向导航菜单 */
+
+    .nav-menu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+        max-height 0.3s ease,
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.3s;
+    }
+
+    .nav-menu.open {
+    max-height: 70px;
+    padding-top: 10px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    }
+
+    .nav-menu a {
+    padding: 10px 7px;
+    border-radius: 8px;
+    color: var(--warm-brown);
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+    }
+
+    .nav-menu a:active {
+    background: var(--sage-light);
+    }
+
+    .main-page {
+      display: none;
+      opacity: 0;
+    }
+
+    .main-page.visible {
+    display: block;
+    padding-top: 54px;
+    opacity: 1;
+    }
+
+    
+
+    .section {
+      padding: 56px 26px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 16px;
+      color: var(--sage);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-family: Georgia, "Songti SC", "STSong", serif;
+      font-size: 29px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 1px;
+    }
+
+    .section-description {
+      margin: 0 auto;
+      max-width: 310px;
+      color: var(--warm-brown);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    /* 主页开场 */
+
+    .hero {
+      position: relative;
+      padding: 58px 24px 50px;
+      background: linear-gradient(
+        180deg,
+        var(--cream) 0%,
+        #FFFCF7 100%
+      );
+    }
+
+    .hero-cross {
+      margin-bottom: 22px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 38px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Songti SC", "STSong", serif;
+      font-size: 35px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: var(--warm-brown);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    /* 照片占位区域 */
+
+    .photo-frame {
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 290px;
+      aspect-ratio: 4 / 5;
+      align-items: center;
+      justify-content: center;
+      margin: 32px auto 0;
+      overflow: hidden;
+      border: 8px solid #FFFFFF;
+      outline: 1px solid rgba(197, 164, 109, 0.35);
+      background: linear-gradient(
+        145deg,
+        #E8D9C9,
+        #D6C4B1,
+        #EEE5D9
+      );
+      box-shadow: 0 10px 30px rgba(89, 65, 46, 0.10);
+    }
+
+    .photo-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      padding: 20px;
+      color: #786451;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .photo-caption {
+      margin-top: 20px;
+      color: var(--warm-brown);
+      font-family: Georgia, "Songti SC", serif;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    /* 回忆部分 */
+
+    .memories {
+      background: #FFFDF8;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .memory-card {
+      min-width: 0;
+      padding: 9px 9px 14px;
+      border: 1px solid #EEE5D9;
+      background: #FFFFFF;
+      box-shadow: 0 5px 16px rgba(89, 65, 46, 0.05);
+    }
+
+    .memory-image {
+      display: flex;
+      aspect-ratio: 1 / 1;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+        135deg,
+        #E7DDD0,
+        #F3E9DE
+      );
+      color: #8A7662;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .memory-card p {
+      margin: 12px 2px 0;
+      color: var(--warm-brown);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* 感谢留言 */
+
+    .gratitude {
+      background: var(--sage-light);
+    }
+
+    .message-card {
+      margin-top: 28px;
+      padding: 28px 22px;
+      border: 1px solid rgba(197, 164, 109, 0.45);
+      background: rgba(255, 253, 248, 0.82);
+      text-align: left;
+    }
+
+    .quote-mark {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .message-card p {
+      margin: 12px 0;
+      color: var(--warm-brown);
+      font-family: Georgia, "Songti SC", "STSong", serif;
+      font-size: 15px;
+      line-height: 2.1;
+    }
+
+    .message-author {
+      margin-top: 18px;
+      color: var(--sage);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    /* 圣经祝福 */
+
+    .blessing {
+      background: linear-gradient(
+        180deg,
+        #FFFDF8,
+        var(--cream)
+      );
+    }
+
+    .verse-card {
+      margin-top: 26px;
+      padding: 30px 22px;
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .verse-cross {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 30px;
+    }
+
+    .verse-text {
+      margin: 0;
+      font-family: Georgia, "Songti SC", "STSong", serif;
+      font-size: 19px;
+      line-height: 2;
+    }
+
+    .verse-reference {
+      margin-top: 18px;
+      color: var(--sage);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* 最后的感谢 */
+
+    .ending {
+      position: relative;
+      padding: 55px 26px 38px;
+      background: #EAE7DC;
+    }
+
+    .ending p {
+      color: var(--warm-brown);
+      font-size: 14px;
+      line-height: 2.2;
+    }
+
+    .ending-name {
+      margin: 26px 0 8px;
+      color: var(--sage);
+      font-family: Georgia, "Songti SC", serif;
+      font-size: 25px;
+      letter-spacing: 2px;
+    }
+
+    .ending-cross {
+      margin: 25px 0 12px;
+      color: var(--gold);
+      font-size: 27px;
+    }
+
+    .footer {
+      padding: 20px 15px;
+      background: #EAE7DC;
+      color: #8A7969;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* 尊重系统的减少动态效果设置 */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Keep the webpage in portrait-style layout */
+
+    @media screen and (orientation: landscape) {
+    .phone {
+        width: min(100%, 430px);
+        min-height: 100vh;
+        min-height: 100dvh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    }
+
+
+    .memories-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 13px 24px;
+    background: #B99A68;
+    color: #FFFDF8;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(100, 75, 45, 0.12);
+    transition: all 0.3s ease;
+    }
+
+    .memories-button:hover {
+    background: #9F8052;
+    transform: translateY(-2px);
+    }
+
+   
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+
+    <!-- 第一页：十字架 + 唯一按钮 -->
+
+    <section class="welcome" id="welcome">
+      <div class="welcome-cross" aria-hidden="true">✝</div>
+
+      <button
+        class="open-button"
+        id="openButton"
+        type="button"
+        aria-label="开启给 Jasmine 的纪念礼物"
+      >
+        开启这份心意
+      </button>
+    </section>
+
+    <!-- 第二页：主要内容，初始隐藏 -->
+
+    <main class="main-page" id="mainPage">
+
+    <!-- 顶部导航栏 -->
+    <header class="site-header">
+        <a href="#home" class="site-logo">Jasmine ♡</a>
+
+        <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="打开导航菜单"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        >
+        <span></span>
+        <span></span>
+        <span></span>
+        </button>
+
+        <nav class="nav-menu" id="navMenu" aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#memories">回忆</a>
+        <a href="#gratitude">留言</a>
+        <a href="#blessing">祝福</a>
+        </nav>
+    </header>
+
+      <!-- 开场 -->
+
+      <section class="section hero" id="home">
+        <div class="hero-cross" aria-hidden="true">✝</div>
+
+        <p class="eyebrow">A GIFT FROM THE HEART</p>
+
+        <h1>谢谢你，Jasmine</h1>
+
+        <p class="hero-subtitle">
+          感谢曾经一起走过的日子<br>
+          愿你未来的旅程充满恩典
+        </p>
+
+        <div class="photo-frame">
+          <!-- 以后将 jasmine.jpg 放在 index.html 同一文件夹 -->
+          <div class="photo-placeholder">
+            在这里放入 Jasmine 的个人照片
+          </div>
+        </div>
+
+        <p class="photo-caption">
+          有些相遇，会成为生命中珍贵的礼物。<br>
+          24T, 不只是回忆。
+        </p>
+      </section>
+
+      <!-- 一起走过的回忆 -->
+
+      <section class="section memories" id="memories">
+        <p class="eyebrow">OUR MEMORIES</p>
+
+        <h2 class="section-title">一起走过的时光</h2>
+
+        <p class="section-description">
+          那些一起欢笑、一起服事、一起成长的日子，
+          都成为了我们珍贵的回忆。
+        </p>
+
+        <div class="memory-grid">
+          <div class="memory-card">
+            <div class="memory-image">回忆照片 01</div>
+            <p>一起服事的日子</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-image">回忆照片 02</div>
+            <p>一起欢笑的时光</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-image">回忆照片 03</div>
+            <p>一起成长的旅程</p>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-image">回忆照片 04</div>
+            <p>值得珍藏的瞬间</p>
+          </div>
+        </div>
+
+
+        <a href="memories.html" class="memories-button">
+        <span>开启我们的回忆</span>
+        <span aria-hidden="true">→</span>
+        </a>
+
+      </section>
+
+      <!-- 感谢留言 -->
+
+      <section class="section gratitude" id="gratitude">
+        <p class="eyebrow">WORDS FROM OUR HEARTS</p>
+
+        <h2 class="section-title">想对你说的话</h2>
+
+        <p class="section-description">
+          有些感谢，也许平时没有机会说出口，
+          但我们一直都放在心里。
+        </p>
+
+        <div class="message-card">
+          <div class="quote-mark">“</div>
+
+          <p>
+            谢谢你一直以来的陪伴、鼓励和付出。
+            感谢你愿意付出时间与爱，
+            陪伴大家走过这段旅程。
+            你带给我们的温暖，我们会一直记得。
+          </p>
+
+          <div class="message-author">
+            —— 来自爱你的弟兄姐妹
+          </div>
+        </div>
+
+        <!-- 后续可增加更多真实的祝福留言 -->
+      </section>
+
+      <!-- 圣经祝福 -->
+
+      <section class="section blessing" id="blessing">
+        <p class="eyebrow">A BLESSING FOR YOU</p>
+
+        <h2 class="section-title">愿恩典常与你同在</h2>
+
+        <p class="section-description">
+          虽然人生的旅程会进入不同的阶段，
+          愿你每一步都带着平安、盼望与勇气。
+        </p>
+
+        <div class="verse-card">
+          <div class="verse-cross" aria-hidden="true">✝</div>
+
+          <p class="verse-text">
+            “愿耶和华赐福给你，保护你。”
+          </p>
+
+          <p class="verse-reference">
+            民数记 6:24
+          </p>
+        </div>
+      </section>
+
+      <!-- 最后的祝福 -->
+
+      <section class="section ending">
+        <p class="eyebrow">WITH LOVE & GRATITUDE</p>
+
+        <h2 class="section-title">这份感谢，<br>我们会一直珍藏。</h2>
+
+        <p>
+          谢谢你，Jasmine。<br>
+          愿你在未来的每一段旅程中，<br>
+          都经历从神而来的平安与恩典。
+        </p>
+
+        <div class="ending-name">Jasmine</div>
+
+        <p>带着爱与祝福，继续前行。</p>
+
+        <div class="ending-cross" aria-hidden="true">✝</div>
+      </section>
+
+      <footer class="footer">
+        MADE WITH LOVE · A GIFT TO REMEMBER
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    const openButton = document.getElementById("openButton");
+    const welcome = document.getElementById("welcome");
+    const mainPage = document.getElementById("mainPage");
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    // 点击三条线，展开或收起横向导航栏
+    menuToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("open");
+
+    menuToggle.classList.toggle("active", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "关闭导航菜单" : "打开导航菜单"
+    );
+    });
+
+    // 点击导航项目后，自动收起菜单
+    navMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "打开导航菜单");
+    });
+    });
+
+    openButton.addEventListener("click", () => {
+      welcome.classList.add("leaving");
+
+      window.setTimeout(() => {
+        welcome.style.display = "none";
+        mainPage.classList.add("visible");
+
+        window.scrollTo({
+          top: 0,
+          behavior: "instant"
+        });
+      }, 650);
+    });
+
+
+    /* Open the main page directly when returning from memories.html */
+    window.addEventListener("DOMContentLoaded", function () {
+    if (window.location.hash === "#home") {
+        const welcome = document.getElementById("welcome");
+        const mainPage = document.getElementById("mainPage");
+
+        if (welcome) {
+        welcome.style.display = "none";
+        }
+
+        if (mainPage) {
+        mainPage.classList.add("visible");
+        }
+
+        window.scrollTo(0, 0);
+    }
+    });
+
+  </script>
+</body>
+</html>
