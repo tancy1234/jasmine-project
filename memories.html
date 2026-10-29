@@ -239,61 +239,86 @@
 
   
   
+
 <script>
   const viewport = document.getElementById("filmViewport");
   const track = document.getElementById("filmTrack");
   const originalSet = document.getElementById("filmSet");
 
-  // Temporary on-screen diagnostics for phone testing.
-  const status = document.createElement("div");
-  status.style.cssText =
-    "position:fixed;bottom:8px;left:8px;right:8px;" +
-    "z-index:99999;background:#fff;color:#333;padding:10px;" +
-    "font:12px monospace;border:1px solid #999;";
-  document.body.appendChild(status);
-
-  if (!viewport || !track || !originalSet) {
-    status.textContent = "ERROR: Photo container not found";
-  } else {
+  if (viewport && track && originalSet) {
+    // Duplicate the photo strip for continuous scrolling.
     const clone = originalSet.cloneNode(true);
     clone.removeAttribute("id");
     clone.setAttribute("aria-hidden", "true");
     track.appendChild(clone);
 
+    const speed = 30;
     let lastTime = 0;
     let distance = 0;
-    const speed = 30;
+    let resumeTimer;
 
     function animate(time) {
       if (!lastTime) lastTime = time;
+
       const delta = Math.min((time - lastTime) / 1000, 0.05);
       lastTime = time;
 
-      const loopWidth = originalSet.getBoundingClientRect().width
-        + 16;
+      if (!document.hidden) {
+        const loopWidth =
+          originalSet.getBoundingClientRect().width + 16;
 
-      if (!document.hidden && loopWidth > 0) {
-        distance += speed * delta;
+        if (loopWidth > 0) {
+          distance += speed * delta;
 
-        if (distance >= loopWidth) {
-          distance -= loopWidth;
+          if (distance >= loopWidth) {
+            distance -= loopWidth;
+          }
+
+          // Keep the animation and manual scrolling in sync.
+          if (!resumeTimer) {
+            viewport.scrollLeft = distance;
+          }
         }
-
-        viewport.scrollLeft = distance;
       }
-
-      status.textContent =
-        "Script: running | " +
-        "Viewport: " + viewport.clientWidth + "px | " +
-        "Content: " + viewport.scrollWidth + "px | " +
-        "Scroll: " + Math.round(viewport.scrollLeft) + "px";
 
       requestAnimationFrame(animate);
     }
 
+    function pauseThenResume() {
+      clearTimeout(resumeTimer);
+
+      // Resume automatic scrolling after interaction.
+      resumeTimer = setTimeout(() => {
+        distance = viewport.scrollLeft;
+        resumeTimer = null;
+        lastTime = 0;
+      }, 1800);
+    }
+
+    viewport.addEventListener("touchstart", pauseThenResume, {
+      passive: true
+    });
+
+    viewport.addEventListener("touchend", pauseThenResume, {
+      passive: true
+    });
+
+    viewport.addEventListener("touchcancel", pauseThenResume, {
+      passive: true
+    });
+
+    viewport.addEventListener("pointerdown", pauseThenResume);
+    window.addEventListener("pointerup", pauseThenResume);
+    window.addEventListener("pointercancel", pauseThenResume);
+
+    document.addEventListener("visibilitychange", () => {
+      lastTime = 0;
+    });
+
     requestAnimationFrame(animate);
   }
 </script>
+
 
 
 </body>
