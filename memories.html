@@ -237,92 +237,70 @@
 
   </div>
 
+  
   <script>
-    
     const viewport = document.getElementById("filmViewport");
     const track = document.getElementById("filmTrack");
     const originalSet = document.getElementById("filmSet");
 
     if (viewport && track && originalSet) {
-    // Duplicate the original photos for a seamless loop.
-    let secondSet = track.querySelector(".film-set-clone");
+      // Make a second copy for continuous scrolling.
+      const clone = originalSet.cloneNode(true);
+      clone.removeAttribute("id");
+      clone.classList.add("film-set-clone");
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
 
-    if (!secondSet) {
-        secondSet = originalSet.cloneNode(true);
-        secondSet.removeAttribute("id");
-        secondSet.classList.add("film-set-clone");
-        secondSet.setAttribute("aria-hidden", "true");
-        track.appendChild(secondSet);
-    }
+      const speed = 22;
+      let lastTime = 0;
+      let pausedUntil = 0;
+      let animationFrame = null;
 
-    const speed = 22; // Pixels per second
-    let lastTime = 0;
-    let interacting = false;
-    let resumeTimer;
-    let animationFrame;
-
-    function animate(time) {
+      function animate(time) {
         if (!lastTime) lastTime = time;
 
         const delta = Math.min((time - lastTime) / 1000, 0.05);
         lastTime = time;
 
-        if (!interacting && !document.hidden) {
-        const loopWidth = originalSet.getBoundingClientRect().width;
+        if (!document.hidden && time >= pausedUntil) {
+          const loopWidth = originalSet.getBoundingClientRect().width
+            + parseFloat(getComputedStyle(track).gap || 0);
 
-        if (loopWidth > 0) {
+          if (loopWidth > 0) {
             viewport.scrollLeft += speed * delta;
 
             if (viewport.scrollLeft >= loopWidth) {
-            viewport.scrollLeft -= loopWidth;
+              viewport.scrollLeft -= loopWidth;
             }
-        }
+          }
         }
 
         animationFrame = requestAnimationFrame(animate);
-    }
+      }
 
-    function pauseForInteraction() {
-        interacting = true;
-        clearTimeout(resumeTimer);
-    }
+      function pauseBriefly() {
+        pausedUntil = performance.now() + 1800;
+      }
 
-    function resumeAfterInteraction() {
-        clearTimeout(resumeTimer);
+      viewport.addEventListener("touchstart", pauseBriefly, {
+        passive: true
+      });
 
-        resumeTimer = setTimeout(() => {
-        interacting = false;
+      viewport.addEventListener("touchend", pauseBriefly, {
+        passive: true
+      });
+
+      viewport.addEventListener("pointerdown", pauseBriefly);
+
+      document.addEventListener("visibilitychange", () => {
         lastTime = 0;
-        }, 1800);
+      });
+
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(animate);
     }
-
-    viewport.addEventListener("touchstart", pauseForInteraction, {
-        passive: true
-    });
-
-    viewport.addEventListener("touchend", resumeAfterInteraction, {
-        passive: true
-    });
-
-    viewport.addEventListener("touchcancel", resumeAfterInteraction, {
-        passive: true
-    });
-
-    viewport.addEventListener("pointerdown", pauseForInteraction);
-
-    window.addEventListener("pointerup", resumeAfterInteraction);
-    window.addEventListener("pointercancel", resumeAfterInteraction);
-
-    document.addEventListener("visibilitychange", () => {
-        lastTime = 0;
-    });
-
-    // Start only once.
-    cancelAnimationFrame(animationFrame);
-    animationFrame = requestAnimationFrame(animate);
-    }
-
   </script>
+
 </body>
 
 
