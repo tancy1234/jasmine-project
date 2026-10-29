@@ -237,78 +237,90 @@
   </div>
 
   <script>
+    
     const viewport = document.getElementById("filmViewport");
     const track = document.getElementById("filmTrack");
     const originalSet = document.getElementById("filmSet");
 
-    // Duplicate the photos to create a continuous loop.
-    const secondSet = originalSet.cloneNode(true);
-    secondSet.removeAttribute("id");
-    secondSet.setAttribute("aria-hidden", "true");
-    track.appendChild(secondSet);
+    if (viewport && track && originalSet) {
+    // Duplicate the original photos for a seamless loop.
+    let secondSet = track.querySelector(".film-set-clone");
 
-    let animationFrame;
+    if (!secondSet) {
+        secondSet = originalSet.cloneNode(true);
+        secondSet.removeAttribute("id");
+        secondSet.classList.add("film-set-clone");
+        secondSet.setAttribute("aria-hidden", "true");
+        track.appendChild(secondSet);
+    }
+
+    const speed = 22; // Pixels per second
     let lastTime = 0;
-    let paused = false;
-    let userInteracting = false;
-    let interactionTimer;
+    let interacting = false;
+    let resumeTimer;
+    let animationFrame;
 
-    // Speed in pixels per second. Increase for faster movement.
-    const speed = 22;
+    function animate(time) {
+        if (!lastTime) lastTime = time;
 
-    function animateFilm(time) {
-      if (!lastTime) lastTime = time;
+        const delta = Math.min((time - lastTime) / 1000, 0.05);
+        lastTime = time;
 
-      const delta = Math.min((time - lastTime) / 1000, 0.05);
-      lastTime = time;
+        if (!interacting && !document.hidden) {
+        const loopWidth = originalSet.getBoundingClientRect().width;
 
-      if (!paused && !userInteracting) {
-        viewport.scrollLeft += speed * delta;
+        if (loopWidth > 0) {
+            viewport.scrollLeft += speed * delta;
 
-        const loopPoint =
-          originalSet.offsetWidth + 16;
-
-        if (viewport.scrollLeft >= loopPoint) {
-          viewport.scrollLeft -= loopPoint;
+            if (viewport.scrollLeft >= loopWidth) {
+            viewport.scrollLeft -= loopWidth;
+            }
         }
-      }
+        }
 
-      animationFrame = requestAnimationFrame(animateFilm);
+        animationFrame = requestAnimationFrame(animate);
     }
 
-    function pauseFilm() {
-      userInteracting = true;
-      clearTimeout(interactionTimer);
+    function pauseForInteraction() {
+        interacting = true;
+        clearTimeout(resumeTimer);
     }
 
-    function resumeFilmSoon() {
-      clearTimeout(interactionTimer);
-      interactionTimer = setTimeout(() => {
-        userInteracting = false;
+    function resumeAfterInteraction() {
+        clearTimeout(resumeTimer);
+
+        resumeTimer = setTimeout(() => {
+        interacting = false;
         lastTime = 0;
-      }, 1800);
+        }, 1800);
     }
 
-    viewport.addEventListener("pointerdown", pauseFilm);
-    viewport.addEventListener("pointerup", resumeFilmSoon);
-    viewport.addEventListener("pointercancel", resumeFilmSoon);
-    viewport.addEventListener("pointerleave", resumeFilmSoon);
-
-    viewport.addEventListener("touchstart", pauseFilm, {
-      passive: true
-    });
-    viewport.addEventListener("touchend", resumeFilmSoon, {
-      passive: true
+    viewport.addEventListener("touchstart", pauseForInteraction, {
+        passive: true
     });
 
-    // Pause while the browser tab is hidden.
+    viewport.addEventListener("touchend", resumeAfterInteraction, {
+        passive: true
+    });
+
+    viewport.addEventListener("touchcancel", resumeAfterInteraction, {
+        passive: true
+    });
+
+    viewport.addEventListener("pointerdown", pauseForInteraction);
+
+    window.addEventListener("pointerup", resumeAfterInteraction);
+    window.addEventListener("pointercancel", resumeAfterInteraction);
+
     document.addEventListener("visibilitychange", () => {
-      paused = document.hidden;
-      lastTime = 0;
+        lastTime = 0;
     });
 
-    // Start the automatic scrolling.
-    animationFrame = requestAnimationFrame(animateFilm);
+    // Start only once.
+    cancelAnimationFrame(animationFrame);
+    animationFrame = requestAnimationFrame(animate);
+    }
+
   </script>
 </body>
 
