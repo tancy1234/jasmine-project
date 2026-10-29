@@ -238,68 +238,63 @@
   </div>
 
   
-  <script>
-    const viewport = document.getElementById("filmViewport");
-    const track = document.getElementById("filmTrack");
-    const originalSet = document.getElementById("filmSet");
+  
+<script>
+  const viewport = document.getElementById("filmViewport");
+  const track = document.getElementById("filmTrack");
+  const originalSet = document.getElementById("filmSet");
 
-    if (viewport && track && originalSet) {
-      // Make a second copy for continuous scrolling.
-      const clone = originalSet.cloneNode(true);
-      clone.removeAttribute("id");
-      clone.classList.add("film-set-clone");
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
+  // Temporary on-screen diagnostics for phone testing.
+  const status = document.createElement("div");
+  status.style.cssText =
+    "position:fixed;bottom:8px;left:8px;right:8px;" +
+    "z-index:99999;background:#fff;color:#333;padding:10px;" +
+    "font:12px monospace;border:1px solid #999;";
+  document.body.appendChild(status);
 
-      const speed = 22;
-      let lastTime = 0;
-      let pausedUntil = 0;
-      let animationFrame = null;
+  if (!viewport || !track || !originalSet) {
+    status.textContent = "ERROR: Photo container not found";
+  } else {
+    const clone = originalSet.cloneNode(true);
+    clone.removeAttribute("id");
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
 
-      function animate(time) {
-        if (!lastTime) lastTime = time;
+    let lastTime = 0;
+    let distance = 0;
+    const speed = 30;
 
-        const delta = Math.min((time - lastTime) / 1000, 0.05);
-        lastTime = time;
+    function animate(time) {
+      if (!lastTime) lastTime = time;
+      const delta = Math.min((time - lastTime) / 1000, 0.05);
+      lastTime = time;
 
-        if (!document.hidden && time >= pausedUntil) {
-          const loopWidth = originalSet.getBoundingClientRect().width
-            + parseFloat(getComputedStyle(track).gap || 0);
+      const loopWidth = originalSet.getBoundingClientRect().width
+        + 16;
 
-          if (loopWidth > 0) {
-            viewport.scrollLeft += speed * delta;
+      if (!document.hidden && loopWidth > 0) {
+        distance += speed * delta;
 
-            if (viewport.scrollLeft >= loopWidth) {
-              viewport.scrollLeft -= loopWidth;
-            }
-          }
+        if (distance >= loopWidth) {
+          distance -= loopWidth;
         }
 
-        animationFrame = requestAnimationFrame(animate);
+        viewport.scrollLeft = distance;
       }
 
-      function pauseBriefly() {
-        pausedUntil = performance.now() + 1800;
-      }
+      status.textContent =
+        "Script: running | " +
+        "Viewport: " + viewport.clientWidth + "px | " +
+        "Content: " + viewport.scrollWidth + "px | " +
+        "Scroll: " + Math.round(viewport.scrollLeft) + "px";
 
-      viewport.addEventListener("touchstart", pauseBriefly, {
-        passive: true
-      });
-
-      viewport.addEventListener("touchend", pauseBriefly, {
-        passive: true
-      });
-
-      viewport.addEventListener("pointerdown", pauseBriefly);
-
-      document.addEventListener("visibilitychange", () => {
-        lastTime = 0;
-      });
-
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     }
-  </script>
+
+    requestAnimationFrame(animate);
+  }
+</script>
+
 
 </body>
 
