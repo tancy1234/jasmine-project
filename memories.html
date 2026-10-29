@@ -41,24 +41,49 @@
     box-shadow: 0 0 25px rgba(80, 55, 35, 0.08);
     }
 
-    .page-heading {
-    padding: 0 20px;
-    text-align: center;
-    }
 
-    .page-heading h1 {
-    margin: 0 0 12px;
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+    background: rgba(255, 253, 248, 0.96);
+    border-bottom: 1px solid rgba(197, 164, 109, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-title {
+    min-width: 0;
+  }
+
+  .header-title h1 {
+    margin: 0 0 5px;
     color: #9F8052;
-    font-size: 28px;
+    font-size: 21px;
     font-weight: 500;
-    }
+  }
 
-    .page-heading p {
-    margin: 0 0 30px;
+  .header-title p {
+    margin: 0;
     color: #92785E;
-    font-size: 14px;
-    line-height: 1.8;
-    }
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .sticky-header .back-button {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+    
 
     /* The visible window stays within the phone width */
     
@@ -171,6 +196,147 @@
     }
 
 
+
+    /* Alternating memory sections */
+    .memory-section {
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .memory-section:nth-of-type(odd) {
+      background: #FFF7E9;
+    }
+
+    .memory-section:nth-of-type(even) {
+      background: #E9DED0;
+    }
+
+    .memory-section-label {
+      margin: 0;
+      color: #9F8052;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    .memory-section-title {
+      margin: 0;
+      color: #795D45;
+      font-size: 20px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    
+  /* 3D picture frame */
+  .flip-frame {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 290px;
+      height: auto;
+      aspect-ratio: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      perspective: 1000px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      text-align: center;
+  }
+
+  .flip-frame-inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.75s ease;
+  }
+
+  .flip-frame.is-flipped .flip-frame-inner {
+      transform: rotateY(180deg);
+  }
+
+  .flip-frame-front,
+  .flip-frame-back {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border: 1px solid #D8C5A7;
+      border-radius: 4px;
+      background: #FFFDF8;
+      box-shadow: 0 8px 22px rgba(80, 55, 35, 0.12);
+      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+  }
+
+  .flip-frame-front {
+      transform: rotateY(0deg);
+  }
+
+  .flip-frame-back {
+      transform: rotateY(180deg);
+      color: #795D45;
+      overflow-y: auto;
+  }
+
+
+  .flip-frame-front img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+  }
+
+
+  .frame-caption {
+      margin: 12px 0 0;
+      color: #795D45;
+      font-size: 14px;
+      line-height: 1.5;
+  }
+
+  .frame-back-title {
+      margin: 0 0 12px;
+      color: #9F8052;
+      font-size: 19px;
+      font-weight: 500;
+  }
+
+  .frame-description {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.9;
+      white-space: normal;
+  }
+
+  .frame-hint {
+      margin: 0;
+      color: #92785E;
+      font-size: 12px;
+      text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+      .flip-frame-inner {
+          transition: none;
+      }
+  }
+
+    
+
   </style>
 </head>
 
@@ -178,10 +344,18 @@
 <body>
   <div class="phone">
 
-    <header class="page-heading">
-      <h1>我们的回忆 ♡</h1>
-      <p>Every picture tells a story...</p>
+    
+    <header class="sticky-header">
+      <div class="header-title">
+        <h1>我们的回忆 ♡</h1>
+        <p>Every picture tells a story...</p>
+      </div>
+
+      <a href="index.html#home" class="back-button">
+        ← 返回
+      </a>
     </header>
+
 
     <section class="film-viewport" id="filmViewport"
       aria-label="Jasmine 的回忆照片，可左右滑动">
@@ -229,11 +403,93 @@
       愿每一份回忆，都成为心中温暖的礼物。
     </p>
 
-    <div class="back-area">
-      <a href="index.html#home" class="back-button">
-        ← 返回主页
-      </a>
-    </div>
+
+    <!-- Memory 01: Background A -->
+    <section class="memory-section">
+      <p class="memory-section-label">MEMORY 01</p>
+      <h2 class="memory-section-title">珍贵的时刻 ♡</h2>
+
+      <button class="flip-frame" type="button"
+        aria-label="翻转相框，查看珍贵的时刻"
+        aria-pressed="false">
+        <span class="flip-frame-inner">
+          <span class="flip-frame-front">
+            <img src="photos/image1-H.JPG"
+              alt="珍贵的回忆" loading="lazy">
+            <span class="frame-caption">珍贵的时刻 ♡</span>
+          </span>
+
+          <span class="flip-frame-back">
+            <span class="frame-back-title">那些美好的日子</span>
+            <span class="frame-description">
+              谢谢你带来的温暖、笑容与陪伴。
+              愿这些珍贵的时刻，成为我们心中永远的礼物。
+            </span>
+          </span>
+        </span>
+      </button>
+
+      <p class="frame-hint">轻触相框，翻开这段回忆 ♡</p>
+    </section>
+
+    <!-- Memory 02: Background B -->
+    <section class="memory-section">
+      <p class="memory-section-label">MEMORY 02</p>
+      <h2 class="memory-section-title">一起走过的日子</h2>
+
+      <button class="flip-frame" type="button"
+        aria-label="翻转相框，查看一起走过的日子"
+        aria-pressed="false">
+        <span class="flip-frame-inner">
+          <span class="flip-frame-front">
+            <img src="photos/image2-H.JPG"
+              alt="一起走过的日子" loading="lazy">
+            <span class="frame-caption">那些值得珍藏的瞬间</span>
+          </span>
+
+          <span class="flip-frame-back">
+            <span class="frame-back-title">感恩有你</span>
+            <span class="frame-description">
+              每一段相遇都有意义，每一份付出都值得感谢。
+              愿你未来的道路充满恩典与盼望。
+            </span>
+          </span>
+        </span>
+      </button>
+
+      <p class="frame-hint">轻触相框，翻开这段回忆 ♡</p>
+    </section>
+
+    <!-- Memory 03: Background A -->
+    <section class="memory-section">
+      <p class="memory-section-label">MEMORY 03</p>
+      <h2 class="memory-section-title">美好的新篇章</h2>
+
+      <button class="flip-frame" type="button"
+        aria-label="翻转相框，查看美好的新篇章"
+        aria-pressed="false">
+        <span class="flip-frame-inner">
+          <span class="flip-frame-front">
+            <img src="photos/image3-H.JPG"
+              alt="美好的新篇章" loading="lazy">
+            <span class="frame-caption">愿未来继续闪耀</span>
+          </span>
+
+          <span class="flip-frame-back">
+            <span class="frame-back-title">愿主赐福于你</span>
+            <span class="frame-description">
+              愿主引领你前方的每一步，
+              赐你平安、智慧与力量，
+              让你在新的旅程中继续发光。
+            </span>
+          </span>
+        </span>
+      </button>
+
+      <p class="frame-hint">轻触相框，翻开这段回忆 ♡</p>
+    </section>
+
+    
 
   </div>
 
@@ -317,6 +573,39 @@
 
     requestAnimationFrame(animate);
   }
+
+    // Flip memory frames when tapped or clicked.
+    document.querySelectorAll(".flip-frame").forEach((frame) => {
+
+      const img = frame.querySelector(".flip-frame-front img");
+
+      function resizeFrame() {
+          if (!img || !img.naturalWidth || !img.naturalHeight) return;
+
+          const frameWidth = frame.clientWidth;
+          const imageHeight = frameWidth * img.naturalHeight / img.naturalWidth;
+
+          const caption = frame.querySelector(".frame-caption");
+          const captionHeight = caption ? caption.offsetHeight + 12 : 0;
+
+          frame.style.height = `${imageHeight + captionHeight + 24}px`;
+          frame.querySelector(".flip-frame-inner").style.height = "100%";
+      }
+
+      if (img.complete) {
+          resizeFrame();
+      } else {
+          img.addEventListener("load", resizeFrame);
+      }
+
+      window.addEventListener("resize", resizeFrame);
+      frame.addEventListener("click", () => {
+        const flipped = frame.classList.toggle("is-flipped");
+        frame.setAttribute("aria-pressed", String(flipped));
+      });
+    });
+  
+
 </script>
 
 
