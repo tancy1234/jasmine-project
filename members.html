@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>24T 成员介绍</title>
+
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Noto Serif SC", "Songti SC",
+                        "Microsoft YaHei", serif;
+            background: #FFFDF8;
+            color: #594638;
+        }
+
+        /* 手机页面尺寸：与 memories.html 一样 */
+        .members-page {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: 0 auto;
+            
+        }
+
+        /* 顶部导航 */
+        .page-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 18px;
+            background: rgba(255, 253, 248, 0.96);
+            border-bottom: 1px solid #E9DED0;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-header h2 {
+            font-size: 17px;
+            color: #795D45;
+            letter-spacing: 1px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: white;
+            background: #B99A68;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+        }
+
+        /* 页面标题 */
+        .page-intro {
+            text-align: center;
+            padding: 50px 20px 40px;
+            background: #FFFDF8;
+        }
+
+        .small-title {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #9F8052;
+            margin-bottom: 15px;
+        }
+
+        .page-intro h1 {
+            font-size: 29px;
+            color: #795D45;
+            margin-bottom: 15px;
+        }
+
+        .page-intro p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #92785E;
+        }
+
+        /* 成员区块 */
+        .member-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 15px;
+            padding: 35px 18px;
+        }
+
+        /* 背景 A */
+        .theme-a {
+            background: #FFF7E9;
+        }
+
+        /* 背景 B */
+        .theme-b {
+            background: #E9DED0;
+        }
+
+        /* 成员照片：竖版 */
+        .member-photo {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background: #EAE2D8;
+            border-radius: 7px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(89, 70, 56, 0.12);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8px;
+            color: #92785E;
+            font-size: 12px;
+        }
+
+        /* 成员资料 */
+        .member-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .member-number {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #9F8052;
+            margin-bottom: 12px;
+        }
+
+        .member-name {
+            font-size: 21px;
+            color: #594638;
+            margin-bottom: 9px;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .member-position {
+            width: fit-content;
+            font-size: 11px;
+            color: #795D45;
+            border-bottom: 1px solid #B99A68;
+            padding-bottom: 7px;
+            margin-bottom: 14px;
+        }
+
+        .member-description {
+            font-size: 11px;
+            line-height: 1.8;
+            color: #795D45;
+            text-align: left;
+            word-break: break-word;
+        }
+
+        /* Design 1：资料左，照片右 */
+        .design-1 .member-info {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .design-1 .member-photo {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        /* Design 2：照片左，资料右 */
+        .design-2 .member-photo {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .design-2 .member-info {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            background: #FFFDF8;
+            color: #9F8052;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+
+        /* 平板 */
+        @media (max-width: 768px) {
+            .member-section {
+                gap: 25px;
+                padding: 45px 30px;
+            }
+
+            .member-name {
+                font-size: 24px;
+            }
+
+            .member-description {
+                font-size: 13px;
+            }
+        }
+
+        /* 手机 */
+        @media (max-width: 600px) {
+
+            .page-header {
+                padding: 15px 18px;
+            }
+
+            .page-header h2 {
+                font-size: 17px;
+            }
+
+            .back-button {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .page-intro {
+                padding: 55px 20px 45px;
+            }
+
+            .page-intro h1 {
+                font-size: 30px;
+            }
+
+            .page-intro p {
+                font-size: 13px;
+            }
+
+            /* 手机改为上下排列 */
+            .member-section {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                padding: 40px 25px;
+            }
+
+            /* 手机统一先显示照片，再显示资料 */
+            .member-photo {
+                width: 75%;
+                max-width: 280px;
+                aspect-ratio: 3 / 4;
+            }
+
+            .member-info {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+            }
+
+            .member-number {
+                margin-bottom: 12px;
+            }
+
+            .member-name {
+                font-size: 25px;
+                margin-bottom: 10px;
+            }
+
+            .member-position {
+                margin-bottom: 18px;
+            }
+
+            .member-description {
+                width: 100%;
+                max-width: 420px;
+                font-size: 13px;
+                line-height: 2;
+                text-align: center;
+            }
+        }
+
+        /* 小屏幕手机 */
+        @media (max-width: 380px) {
+            .member-section {
+                padding: 35px 18px;
+            }
+
+            .member-photo {
+                width: 85%;
+            }
+
+            .member-name {
+                font-size: 23px;
+            }
+
+            .member-description {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="members-page">
+
+    <!-- 顶部导航 -->
+    <header class="page-header">
+        <h2>24T 成员 ♡</h2>
+        <a href="index.html#home" class="back-button">返回主页</a>
+    </header>
+
+    <!-- 页面介绍 -->
+    <section class="page-intro">
+        <div class="small-title">我们的故事 · 我们的回忆</div>
+
+        <h1>认识我们的成员</h1>
+
+        <p>
+            每个人都有自己的故事，<br>
+            每个人都是这段旅程中重要的一部分。
+        </p>
+    </section>
+
+
+    <!-- 成员 01：设计 A -->
+    <!-- 电脑：资料左，照片右 -->
+    <!-- 手机：照片上，资料下 -->
+
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Jackson</h2>
+
+            <div class="member-position">
+                奥斯卡演员担当
+            </div>
+
+            <p class="member-description">
+                Jackson 是一位天生的戏剧高手，对 Drama 可以说是非常专业，无论是表情、动作还是情绪，都能掌握得恰到好处。感觉只要给他一个舞台，他就能立刻进入角色，演技随时在线！不管是悲剧、喜剧还是充满戏剧性的场面，他都能轻松驾驭。说不定哪天连生活中的小事情都能被他演成一部连续剧，绝对是朋友圈里的最佳男主角！
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/jackson.jpeg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- 成员 02：设计 B -->
+    <!-- 电脑：照片左，资料右 -->
+    <!-- 手机：照片上，资料下 -->
+    <section class="member-section theme-b design-2">
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/yangtai.jpeg" alt="">
+            </div>
+        </div>
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Yang Tai</h2>
+
+            <div class="member-position">
+                运动担当
+            </div>
+
+            <p class="member-description">
+                Yangtai 是一位充满运动细胞的人，简直就是为 Sport 而生的！无论是哪一种运动，都能看到他积极参与的身影，身体素质和运动能力都相当不错。对运动充满热情，也有着不轻易放弃的精神。感觉只要有比赛，Yangtai 就会自动进入战斗模式，随时准备大展身手！不过，大家还是要小心一点，跟他比赛之前最好先做好热身，不然输得太快可能连热身的机会都没有！
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Koid</h2>
+
+            <div class="member-position">
+                颜值担当
+            </div>
+
+            <p class="member-description">
+                Koid 是一个聪明又帅气的人，不仅拥有出众的外表，还有着让人佩服的智慧和能力。平时很喜欢运动，充满活力，对自己喜欢的事情总是充满热情。他也是一个非常乐于给予支持的人，无论是在生活上还是其他方面，总是愿意伸出援手，给身边的人鼓励和帮助。有他在，很多事情都会变得更有动力、更有信心。当然，帅气归帅气，聪明归聪明，偶尔也别太自恋啦，毕竟地球不是绕着你转的！
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/koid.jpeg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- 成员 02：设计 B -->
+    <!-- 电脑：照片左，资料右 -->
+    <!-- 手机：照片上，资料下 -->
+    <section class="member-section theme-b design-2">
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/yongle.jpeg" alt="">
+            </div>
+        </div>
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Yong Le</h2>
+
+            <div class="member-position">
+                文静担当
+            </div>
+
+            <p class="member-description">
+                Yong Le 是一个非常安静的人，安静到有时候会让人怀疑他是不是正在进行省电模式 😂。除了安静，还是非常安静，仿佛他的字典里没有“主动说话”这几个字。不过，虽然话不多，但这也是他独特的个人风格。平时总是默默地待在自己的小世界里，不争不抢，低调得很。只能说，Yong Le 的安静程度已经不是普通级别，而是可以申请世界纪录的那种！
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Qiao Ying</h2>
+
+            <div class="member-position">
+                逻辑分析担当
+            </div>
+
+            <p class="member-description">
+                Qiaoying 是一个逻辑思维非常强的人，头脑清晰，分析事情总是有自己的一套方法，遇到问题也能冷静地思考，并且快速找到解决方案。她在学习方面更是非常厉害，可以说是学霸级别的人物，学习能力强，理解能力也很好，很多东西一点就通。跟她讨论问题，感觉自己的脑袋也需要升级一下才跟得上！😂 简直就是智慧与实力并存的代表，希望她继续保持这份优秀，未来在自己喜欢的领域发光发热！✨
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/qiaoying.jpg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- 成员 02：设计 B -->
+    <!-- 电脑：照片左，资料右 -->
+    <!-- 手机：照片上，资料下 -->
+    <section class="member-section theme-b design-2">
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/wende.jpeg" alt="">
+            </div>
+        </div>
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Wen De</h2>
+
+            <div class="member-position">
+                房地产担当
+            </div>
+
+            <p class="member-description">
+                Wende 最近可以说是房地产领域的潜力股，对 Property 的了解越来越深入，简直快要变成半个房地产专家了！从房子、地点到各种房地产知识，感觉他现在随时都能跟你聊上一整天。说不定哪天大家买房都不用找 Agent，直接找 Wende 就可以了！😂 继续保持这份学习热情，说不定未来不仅自己拥有好几间房子，还能成为大家的置业顾问，带领大家一起实现买房梦！
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!--
+        增加成员时，继续交替使用：
+
+        成员 03：theme-a design-1
+        成员 04：theme-b design-2
+        成员 05：theme-a design-1
+        成员 06：theme-b design-2
+    -->
+
+    <footer>
+        用心记录 · 永远珍藏 ♡
+    </footer>
+
+</div>
+
+</body>
+</html>

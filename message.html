@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Words From Our Hearts</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Noto Serif SC", "Songti SC",
+                         "Microsoft YaHei", serif;
+            background: #FFFDF8;
+            color: #594638;
+        }
+
+        /* 手机页面尺寸 */
+        .message-page {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: 0 auto;
+        }
+
+        /* Sticky Header */
+        .page-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 18px;
+            background: rgba(255, 253, 248, 0.96);
+            border-bottom: 1px solid #E9DED0;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-header h2 {
+            font-size: 17px;
+            color: #795D45;
+            letter-spacing: 1px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: white;
+            background: #B99A68;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+        }
+
+        /* 页面标题 */
+        .page-intro {
+            text-align: center;
+            padding: 55px 20px 45px;
+            background: #FFFDF8;
+        }
+
+        .small-title {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #9F8052;
+            margin-bottom: 15px;
+        }
+
+        .page-intro h1 {
+            font-size: 28px;
+            color: #795D45;
+            margin-bottom: 15px;
+        }
+
+        .page-intro p {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #92785E;
+        }
+
+        /* 留言区块 */
+        .messages-container {
+            padding: 10px 18px 35px;
+        }
+
+        .message-card {
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #FFF7E9;
+            box-shadow: 0 5px 15px rgba(89, 70, 56, 0.06);
+        }
+
+        .message-card:nth-child(even) {
+            background: #E9DED0;
+        }
+
+        .message-number {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #9F8052;
+            margin-bottom: 15px;
+        }
+
+        .message-title {
+            font-size: 19px;
+            color: #594638;
+            margin-bottom: 15px;
+        }
+
+        .message-content {
+            font-size: 13px;
+            line-height: 2;
+            color: #795D45;
+            white-space: pre-line;
+        }
+
+        .message-author {
+            text-align: right;
+            font-size: 12px;
+            color: #9F8052;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            background: #FFFDF8;
+            color: #9F8052;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="message-page">
+
+    <!-- Sticky Header -->
+    <header class="page-header">
+
+        <h2>留言 ♡</h2>
+
+        <a href="index.html#home" class="back-button">
+            返回主页
+        </a>
+
+    </header>
+
+
+    <!-- Page Introduction -->
+    <section class="page-intro">
+
+        <div class="small-title">
+            A LITTLE LOVE FROM ALL OF US
+        </div>
+
+        <h1>24T 的心里话</h1>
+
+        <p>
+            有些话，值得好好珍藏。<br>
+            这里收藏着大家想对你说的心里话。
+        </p>
+
+    </section>
+
+
+    <!-- Messages Container -->
+    <main class="messages-container">
+
+        <!-- Message 01 -->
+        <section class="message-card">
+
+            <div class="message-number">信息 01</div>
+
+            <p class="message-content">
+                Hey 最爱神的Jasmine  
+                虽然最近比较少和大家见面了 但是还是希望你开心快乐☺️ 
+                谢谢你带我认识神 也谢谢你之前对我那么关照 也那么支持我 之前我打比赛你还买了一支水给我 我也记着 嘻嘻 
+
+                希望你许下的愿望都会梦想成真✨事业越来越卓越💼距离神越来越靠近😇 事业 爱情 与神的关系 都能圆满 三丰收
+
+                以上的祷告奉主耶稣得胜的名求 Amen！
+            </p>
+
+            <div class="message-author">
+                — Chuan Yu
+            </div>
+
+        </section>
+
+
+        <!-- Message 02 -->
+        <section class="message-card">
+
+            <div class="message-number">信息 02</div>
+
+            
+
+            <p class="message-content">
+                Hope you have a great one and an awesome year ahead.You are always strong and reliable you can rely on your friend as well 
+            </p>
+
+            <div class="message-author">
+                — Cheng Foong
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 03</div>
+
+            <p class="message-content">
+                祝你平安顺遂 愿你心中常有从信仰而来的喜乐和力量
+            </p>
+
+            <div class="message-author">
+                — Yong Le
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 04</div>
+
+            <p class="message-content">
+                再見的時候 牽起我的手 看暖暖夕陽 它越過山丘 世界遼闊 我想陪你一起走 可惜時間 它總是先到盡頭
+                說再見才發現再也見不到 能不能就這樣忍著痛淚不掉
+            </p>
+
+            <div class="message-author">
+                — （这个人比较欠打 为了保护 我不放他名字）
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 05</div>
+
+            <p class="message-content">
+                愿上帝在新的一岁里继续看顾妳，赐妳平安，喜乐与力量，也愿妳在未来的每一步都能得到祂的带领与恩典。
+                希望妳每天都能被爱包围，遇到困难时有力量面对，努力的事情都能有所收获。祝妳平安喜悦✌🏻️
+
+            </p>
+
+            <div class="message-author">
+                — Wen De
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 06</div>
+
+            <p class="message-content">
+                今年我应该不在kl，但是身为朋友还是祝你事业顺顺利利，然后祝你爱的神爱你！！！哈利路亚🫰🫰
+            </p>
+
+            <div class="message-author">
+                — Yang Tai
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 07</div>
+
+            <p class="message-content">
+                不知不觉，我接触教会也已经一年了。现在回想起来，还是觉得有点奇妙哈哈哈哈。还记得去年你本来要向我宣传 Crossover 活动，结果刚好遇到我从辅导室出来哭，最后活动宣传没讲成，反而变成你在安慰我了哈哈哈哈。现在想起来还是觉得很有趣，也很感谢当时的你。
+
+很开心当初是你带我认识教会，让我有机会接触到各种各样有趣的人，也认识了许多很珍贵的朋友。这一年里，我确实因为这里的大家而快乐了很多。对我来说，这里不只是一个聚会的地方，更像是一个温暖的大家庭，让我感受到人与人之间的陪伴和善意。
+
+其实我一直都很欣赏你的领导力。你身上有一种很勇敢、坚韧的特质，也很愿意承担责任、带领大家往前走。我也很感谢你曾经给我的一些勇气，比如当初让我有机会站上台唱歌。虽然有时候你看起来好像有点严厉，哈哈哈哈，但我知道你其实并没有因为我的表现不够好就埋怨我，或者想要把我换掉。反而是这样的包容和信任，让我有机会尝试一些原本可能不太敢做的事情。现在想起来，我觉得这也是很珍贵的一份鼓励。
+
+虽然之后我们不在同一个组了，但我想这也只是大家在不同的位置上继续走自己的路，并不代表彼此的缘分就此结束。很感谢这一年来有你的陪伴，也谢谢你成为我认识这个大家庭的起点。
+
+愿主一直与你同在，在未来的每一段路上陪伴、引领和看顾你。
+            </p>
+
+            <div class="message-author">
+                — Qiao Ying
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 08</div>
+
+            <p class="message-content">
+                愿你每天都平安喜乐，生活顺顺利利，烦恼通通退散，好运天天上门！愿你想要的都有，努力的都有回报，吃饭不胖、睡觉不累、钱包越来越厚！😂
+最重要的是，天天开心，笑容常在，福气满满！记得照顾好自己，毕竟人生已经够难了，千万不要再跟自己的闹钟过不去！不管发生什么事，我们都在。
+            </p>
+
+            <div class="message-author">
+                — Jun Yan
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        用心记录 · 永远珍藏 ♡
+    </footer>
+
+</div>
+
+</body>
+</html>

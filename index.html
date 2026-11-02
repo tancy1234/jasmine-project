@@ -651,7 +651,72 @@
     transform: translateY(-2px);
     }
 
-   
+    
+    /* 24T Members Section */
+    .members-section {
+        padding: 45px 20px;
+        text-align: center;
+        background: #FFF7E9;
+    }
+
+    .members-image {
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        margin: 0 auto 22px;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(80, 55, 35, 0.12);
+    }
+
+    .members-section h2 {
+        margin: 0 0 10px;
+        color: #9F8052;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    .members-section p {
+        margin: 0 0 22px;
+        color: #92785E;
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .members-button {
+        display: inline-block;
+        padding: 12px 26px;
+        border-radius: 30px;
+        background: #B99A68;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s ease;
+    }
+
+    .members-button:hover {
+        background: #9F8052;
+    }
+
+
+
+
+    .hearts-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background: #B99A68;
+        color: #FFFFFF;
+        text-decoration: none;
+        font-size: 11px;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+    .hearts-button:hover {
+        background: #92785E;
+    }
+
   </style>
 </head>
 
@@ -771,6 +836,38 @@
 
       </section>
 
+
+      <!-- 24T Members Section -->
+      <section class="members-section">
+
+        <p class="eyebrow">OUR MEMBERS</p>
+
+        <h2 class="section-title">大家一份子</h2>
+
+        <p class="section-description">
+          那些一起欢笑、一起服事、一起成长的日子，
+          都成为了我们珍贵的回忆。
+        </p>
+          <img
+              src="photos/Fimage1-V.JPG"
+              alt="24T Members"
+              class="members-image"
+              loading="lazy"
+          >
+
+          <h2>24T ♡</h2>
+
+          <p>
+              A part of our journey.<br>
+              每一段相遇，都是值得珍藏的回忆。
+          </p>
+
+          <a href="members.html" class="members-button">
+              查看组员 →
+          </a>
+      </section>
+
+
       <!-- 感谢留言 -->
 
       <section class="section gratitude" id="gratitude">
@@ -797,7 +894,11 @@
             —— 来自爱你的弟兄姐妹
           </div>
         </div>
+        <br><br>
 
+        <a href="message.html" class="hearts-button">
+            READ OUR MESSAGES ♡
+        </a>
         <!-- 后续可增加更多真实的祝福留言 -->
       </section>
 
