@@ -121,12 +121,42 @@
             margin-bottom: 15px;
         }
 
+        
         .message-content {
             font-size: 13px;
             line-height: 2;
             color: #795D45;
             white-space: pre-line;
+
+            /* 默认显示高度 */
+            max-height: 120px;
+            overflow: hidden;
+            position: relative;
         }
+
+        /* 展开后的完整内容 */
+        .message-content.expanded {
+            max-height: none;
+        }
+
+        /* Read More 按钮 */
+        .read-more-button {
+            display: none;
+            margin-top: 12px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: #9F8052;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .read-more-button.visible {
+            display: inline-block;
+        }
+
 
         .message-author {
             text-align: right;
@@ -198,7 +228,11 @@
 
                 以上的祷告奉主耶稣得胜的名求 Amen！
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
+            
             <div class="message-author">
                 — Chuan Yu
             </div>
@@ -216,6 +250,9 @@
             <p class="message-content">
                 Hope you have a great one and an awesome year ahead.You are always strong and reliable you can rely on your friend as well 
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
             <div class="message-author">
                 — Cheng Foong
@@ -230,6 +267,9 @@
             <p class="message-content">
                 祝你平安顺遂 愿你心中常有从信仰而来的喜乐和力量
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
             <div class="message-author">
                 — Yong Le
@@ -245,7 +285,9 @@
                 再見的時候 牽起我的手 看暖暖夕陽 它越過山丘 世界遼闊 我想陪你一起走 可惜時間 它總是先到盡頭
                 說再見才發現再也見不到 能不能就這樣忍著痛淚不掉
             </p>
-
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
             <div class="message-author">
                 — （这个人比较欠打 为了保护 我不放他名字）
             </div>
@@ -275,6 +317,9 @@
             <p class="message-content">
                 今年我应该不在kl，但是身为朋友还是祝你事业顺顺利利，然后祝你爱的神爱你！！！哈利路亚🫰🫰
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
             <div class="message-author">
                 — Yang Tai
@@ -297,6 +342,9 @@
 
 愿主一直与你同在，在未来的每一段路上陪伴、引领和看顾你。
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
             <div class="message-author">
                 — Qiao Ying
@@ -312,9 +360,91 @@
                 愿你每天都平安喜乐，生活顺顺利利，烦恼通通退散，好运天天上门！愿你想要的都有，努力的都有回报，吃饭不胖、睡觉不累、钱包越来越厚！😂
 最重要的是，天天开心，笑容常在，福气满满！记得照顾好自己，毕竟人生已经够难了，千万不要再跟自己的闹钟过不去！不管发生什么事，我们都在。
             </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
 
             <div class="message-author">
                 — Jun Yan
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 09</div>
+
+            <p class="message-content">
+                首先很感谢你这一年以来的关照和支持。当知道你不是我们组长时我甚感失落，我们不再是从前那段时光有你lead每次小组活动or聚会，还有joan带动小组的气氛，还有jiahao跟jack这两个搞笑男又那么会聊天，我就是很安心地跟着罢了，反正一定很顺利哈哈哈。现在看来好像一切都是崭新的开始，我们都要开始step up了，但为了彼此更好的成长，我们不得不分离。but我相信无论我们在哪里都是永远的家人，24T永远都在，我们依然还会在教会相见。愿你在你的领域里继续闪闪发光 越做越大，祝你不管遇到什么困难 挫折都能战胜，希望你永远保持开心 幸福，最后也希望你早日official！找到你生命中的属灵伴侣💏！你永远都是我最珍贵，最敬重的大姐（除Denise之外），我们一起努力奋斗 加油！🤍    
+            </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
+
+            <div class="message-author">
+                — Koid
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 10</div>
+
+            <p class="message-content">
+                Hi Jasmin！💗恭喜你毕业快乐啦！🎓
+
+还记得一开始来到这个小组的时候，一切都很陌生，也很不知所措。那时候的我甚至还在抱怨，为什么自己又被换到一个陌生的环境了。但我一直记得，有一次在 basement，我一个人坐着的时候，你突然走过来跟我说了一声 Hello。
+
+就是那么一个简单的 Hello，却让我觉得你很不一样。
+
+那是我第一次感受到，原来真的有一个人，可以不带任何有色眼镜，带着一颗那么真诚、单纯的心去爱神、爱人。而从我换到这个小组开始，一直到现在，你让我感受到的，依然是当初认识你的那个模样——一个单纯爱神、单纯渴望拯救灵魂的孩子。其实，我也想跟你说一声对不起。因为很多时候，我没有把自己说过的话做好，也没有把答应你的事情做到，让你失望了。对不起，也谢谢你一直以来的包容。谢谢你的真心，谢谢你的付出，更谢谢你一直以来对我的爱，让我感受到一种很不一样的爱。
+
+原来，爱不只有爱情，也不只有亲情，原来还有一种爱是你
+
+这段时间，真的辛苦了。我很开心，也很感恩自己能够被你带着走过这段时间。因为我觉得自己真的很幸福。虽然很多时候你讲话都很直，一针见血，哈哈哈哈！但我很清楚，这些都是因为你真心希望我们变得更好。甚至有时候我会想，如果以后你有了自己的孩子，你一定会是一个很好的妈妈。因为你总是像照顾自己的孩子一样，细心也很真心的看顾着每一个人。
+
+也因为你，让我更想坚强地站起来；因为你，让我看见你为什么那么渴望去爱人、拯救灵魂；因为你，让我看见上帝是如何一点一点地塑造和改变我。也因为你，让我明白，再难的坎，只要有神在，凡事都可以成为 small case。
+
+在你身上，我也看见了很多我很想学习的东西。你对神的信心，就好像一座山一样坚定；你对人的爱，对每一个灵魂的看重，就像妈妈看顾自己的孩子一样，充满了爱与耐心。这些都是我很佩服你，也很想向你学习的地方。
+
+最后，只想跟你说，加油！希望未来的日子里，当我需要你的时候，你依然都在。
+因为我真的很需要你！不希望有一天，你不在了。
+
+See you next week and the next week, and many more weeks to come！HAHAHA
+
+Love you！    
+            </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
+
+            <div class="message-author">
+                — Abby
+            </div>
+
+        </section>
+
+        <section class="message-card">
+
+            <div class="message-number">信息 11</div>
+
+            <p class="message-content">
+                Shalom sis, 毕业快乐! 和你认识了 差不多有6年的时间 感谢神 在这段时间的里面 我们都能够亲眼见证 彼此很多的成长&很多很历史性的时刻. 从一开始 我们都还是组员 在神的国的里面还是很新. 到你越来越渴望 越来越被神 大大的使用 成为我的组长. 在这一路 真的看见很多的破碎 不是因为你不好 而是看见 你怎样愿意 为了灵魂而选择被神 破碎. 现在想回去 这一路以来 真的很不容易, 很多的挑战 很多的苦难 可是你都不曾放弃 每次还会站起来 鼓励我们 继续肩并肩地一起走下去. 还记得 我们小组的异象一直以来都是要30人 虽然现在看起来 已经不可能了. 可是感谢神 也透过你的手 去撒下了 很多的芥菜种, 虽然接下来浇水 施肥的不是我们的 可是祷告有一天他们的 信心因为神的呼召 而长起来 会比各样的菜都大，且成了树，天上的飞鸟来宿在它的枝上. 在这里 也想讲辛苦啦！！！ 我也很清楚的知道 若不是你和大姐 我应该很早就被 送上去WA. 我不曾怀疑 你讲过的话 虽然每次都会很pattern 甚至有时候 我还会玩太多 弄到你被骂. 真的真的 很感恩你的包容和你的爱, 我知道 我不是很会讲话 做很多事情 都喜欢自己来 很多时候做错了 都不知道, 感谢你 每次被骂了 你都会私底下和我讲 可以怎样改 怎样做 虽然有时候听起来会很凶 可是确实我很需要的. 也想很你讲的是 有时候你会和我讲 你不是要做牧师的meh 我都会感到很亏欠 上帝,你,大姐 和很多的属灵领袖 因为我知道 我真的没有做到很好. 感恩你们在背后默默的一直为着我来祷告.
+
+也很想 和你讲的是 虽然你每次讲你觉得 你是上帝眼中的 花木兰 可是适当的时候 也可以来到神的面前selah~ 不要整天和别人讲 她是上帝的公主 可是忘记了 你自己也是 上帝的公主/宝贝 适当的休息吧. 祷告神 能够快点把一个 白马Dato赐给你. 祷告他的出现 能够让你成为一个的公主 可以更多的依靠他. 让你的下半辈子不需要在为金钱而烦恼 可以很专心的去建造神的国. 也宣告 你和你未来的另一半 都可以在 神的家 一起去侍奉神 携手完成M100这个异象, 并成为众圣徒的榜样. 祷告你的异梦 能快点成就 在海边 去办一个布道会. 如果有需要 记得call我 我不睡觉 都会去support你. 接下来 不管有什么需要 请尽管开口, 我们都会在的. 
+
+愿神再次把一颗 敏感这个时代年轻人的需要的这颗心 放在你的里面. 真的永远都不会忘记 我们之前可以为神 怎样的摆上和疯狂. 我相信以后 我们也可以 不管去到哪里 都一起把神的国 带下来 把耶稣的爱 带出去 把失丧的灵魂 带回来. 
+加油, 永远的SIS
+
+約 翰 一 書 4:19 我 們 愛 ， 因 為 神 先 愛 我 們 。    
+            </p>
+            <button class="read-more-button" type="button">
+                阅读更多 ↓
+            </button>
+
+            <div class="message-author">
+                — JiaHao
             </div>
 
         </section>
@@ -328,6 +458,42 @@
     </footer>
 
 </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const messageCards = document.querySelectorAll(".message-card");
+
+    messageCards.forEach(function (card) {
+
+        const content = card.querySelector(".message-content");
+        const button = card.querySelector(".read-more-button");
+
+        if (!content || !button) return;
+
+        // 检查留言是否超过默认高度
+        if (content.scrollHeight > content.clientHeight + 1) {
+            button.classList.add("visible");
+        }
+
+        button.addEventListener("click", function () {
+
+            content.classList.toggle("expanded");
+
+            if (content.classList.contains("expanded")) {
+                button.textContent = "收起 ↑";
+            } else {
+                button.textContent = "阅读更多 ↓";
+            }
+
+        });
+
+    });
+
+});
+</script>
+
 
 </body>
 </html>

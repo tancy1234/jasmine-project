@@ -1,0 +1,59 @@
+<section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">姓名</h2>
+
+            <div class="member-position">
+                职位
+            </div>
+
+            <p class="member-description">
+                在这里填写成员的个人介绍。
+                可以分享这个人的性格、贡献、
+                有趣的故事，以及在这段旅程中留下的特别回忆。
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                成员照片 01
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- 成员 02：设计 B -->
+    <!-- 电脑：照片左，资料右 -->
+    <!-- 手机：照片上，资料下 -->
+    <section class="member-section theme-b design-2">
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                成员照片 02
+            </div>
+        </div>
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">姓名</h2>
+
+            <div class="member-position">
+                职位
+            </div>
+
+            <p class="member-description">
+                在这里填写成员的个人介绍。
+                可以分享这个人的性格、贡献、
+                有趣的故事，以及在这段旅程中留下的特别回忆。
+            </p>
+
+        </div>
+
+    </section>

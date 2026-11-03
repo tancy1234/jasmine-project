@@ -316,6 +316,118 @@
                 font-size: 12px;
             }
         }
+
+
+        /* =================================
+        ROYAL EDITION - 特别成员专属设计
+        ================================= */
+
+        .royal-member .member-photo {
+            position: relative;
+            width: 112%;
+            margin-left: -6%;
+            aspect-ratio: 3 / 4;
+
+            border: 5px double #C5A04D;
+            outline: 2px solid #E5CC86;
+            outline-offset: 4px;
+
+            border-radius: 5px;
+            overflow: visible;
+
+            background: linear-gradient(
+                135deg,
+                #F8E8B5,
+                #C5A04D,
+                #F9EDC9,
+                #B38A36
+            );
+
+            box-shadow:
+                0 0 0 7px rgba(197, 160, 77, 0.12),
+                0 10px 30px rgba(120, 85, 25, 0.25);
+        }
+
+        /* 皇冠装饰 */
+        .royal-member .member-photo::before {
+            content: "♛";
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 48px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            color: #B38A36;
+            background: #FFF7E9;
+
+            border: 2px solid #C5A04D;
+            border-radius: 50% 50% 5px 5px;
+
+            z-index: 5;
+        }
+
+        /* 照片本身 */
+        .royal-member .member-photo img {
+            border: 3px solid #FFF1C9;
+            border-radius: 2px;
+        }
+
+        /* 照片占位框 */
+        .royal-member .photo-placeholder {
+            border: 3px solid #FFF1C9;
+            background: #F5E8C9;
+        }
+
+        /* 皇家成员编号 */
+        .royal-member .member-number {
+            color: #B38A36;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 皇家成员名字 */
+        .royal-member .member-name {
+            color: #9A702D;
+            font-size: 25px;
+            text-shadow: 1px 1px 2px rgba(197, 160, 77, 0.2);
+        }
+
+        /* 皇家职位 */
+        .royal-member .member-position {
+            color: #A47C36;
+            border-bottom: 2px solid #C5A04D;
+        }
+
+        /* 皇家特别标签 */
+        .royal-member .member-number::after {
+            content: " ✦ ROYAL EDITION ✦";
+            display: block;
+            margin-top: 8px;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #B38A36;
+        }
+
+        /* 手机尺寸调整 */
+        @media (max-width: 600px) {
+            .royal-member .member-photo {
+                width: 85%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .royal-member .member-name {
+                font-size: 27px;
+            }
+        }
+
     </style>
 </head>
 
@@ -339,6 +451,115 @@
             每个人都有自己的故事，<br>
             每个人都是这段旅程中重要的一部分。
         </p>
+    </section>
+
+
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Jasmine</h2>
+
+            <div class="member-position">
+                组长担当
+            </div>
+
+            <p class="member-description">
+                Jasmine 是一位很有领导能力的人，拥有着让人信服的气场和责任感。作为一位 Leader，她不仅懂得带领团队前进，也愿意关心和支持身边的人，在大家遇到困难时给予鼓励和帮助。她有自己的想法，也有带领大家一起成长的能力。可以说，有她在，大家就多了一份安心和方向感。
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/jasmine.jpeg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="member-section theme-a design-1 royal-member">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">JiaHao</h2>
+
+            <div class="member-position">
+                万能担当 <br>
+                1. 付钱担当 <br>
+                2. 载送担当 <br>
+                3. 贴心担当 <br>
+                4. 暖男担当
+            </div>
+
+            <p class="member-description">
+                Jiahao 是一个非常贴心又温柔的人，总是很懂得关心身边的人，也愿意主动给予帮助和支持。他不仅性格好，而且还是一位非常有实力的富豪潜力股！😂 无论是对朋友还是身边的人，都能感受到他的温暖和善意。最难得的是，他既有一颗善良体贴的心，又有让人羡慕的财富实力。简直就是集温柔、体贴和财富于一身的代表！希望 Jiahao 继续保持这份甜蜜与善良，当然，也别忘了以后发财了请大家吃大餐！🤣💰❤️
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/jiahao.jpeg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">Abby</h2>
+
+            <div class="member-position">
+                网红担当
+            </div>
+
+            <p class="member-description">
+                Abby 是一位非常受欢迎的网红，拥有超高人气，走到哪里都自带光环！平时对护肤也特别有研究，家里的护肤品多到可以开一间小型美容店了！😂 从清洁、保湿到各种护肤精华，感觉每一种皮肤问题她都有对应的解决方案。说不定她的护肤品比她的衣服还多，连皮肤都不知道今天应该轮到哪一瓶上场！🤣 不仅人气高，还非常注重保养，简直就是美丽与影响力并存的代表！✨
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/abby.jpeg" alt="">
+            </div>
+        </div>
+
+    </section>
+    <section class="member-section theme-a design-1">
+
+        <div class="member-info">
+
+            
+
+            <h2 class="member-name">JunYan</h2>
+
+            <div class="member-position">
+                辅助担当
+            </div>
+
+            <p class="member-description">
+                Junyan 是一个非常有安全感的存在，简直就是团队里的专属后勤支援！😂 无论什么时候，身上总是准备了各种各样的东西：糖果、Power Bank、药物等等，感觉只要大家有任何需要，他都能立刻从包包里变出解决方案。肚子饿了有糖果，手机没电有 Power Bank，身体不舒服还有药物，根本就是行走版的便利店加急救箱！🤣 他不仅细心又有准备，也总是默默地照顾和支持身边的人，是一个非常可靠的 Support Type Person。有 Junyan 在，大家出门真的可以少带一半东西了！
+            </p>
+
+        </div>
+
+        <div class="member-photo">
+            <div class="photo-placeholder">
+                <img src="people/junyan.png" alt="">
+            </div>
+        </div>
+
     </section>
 
 
@@ -376,7 +597,7 @@
     <!-- 成员 02：设计 B -->
     <!-- 电脑：照片左，资料右 -->
     <!-- 手机：照片上，资料下 -->
-    <section class="member-section theme-b design-2">
+    <section class="member-section theme-a design-1">
 
         <div class="member-photo">
             <div class="photo-placeholder">
@@ -433,7 +654,7 @@
     <!-- 成员 02：设计 B -->
     <!-- 电脑：照片左，资料右 -->
     <!-- 手机：照片上，资料下 -->
-    <section class="member-section theme-b design-2">
+    <section class="member-section theme-a design-1">
 
         <div class="member-photo">
             <div class="photo-placeholder">
@@ -489,7 +710,7 @@
     <!-- 成员 02：设计 B -->
     <!-- 电脑：照片左，资料右 -->
     <!-- 手机：照片上，资料下 -->
-    <section class="member-section theme-b design-2">
+    <section class="member-section theme-a design-1">
 
         <div class="member-photo">
             <div class="photo-placeholder">
