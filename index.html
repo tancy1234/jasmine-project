@@ -454,43 +454,38 @@
       background: #FFFDF8;
     }
 
+    
+    /* Memory Grid - Uniform Image Size */
     .memory-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 30px;
-      text-align: left;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
     .memory-card {
-      min-width: 0;
-      padding: 9px 9px 14px;
-      border: 1px solid #EEE5D9;
-      background: #FFFFFF;
-      box-shadow: 0 5px 16px rgba(89, 65, 46, 0.05);
+        width: 100%;
+        overflow: hidden;
     }
 
     .memory-image {
-      display: flex;
-      aspect-ratio: 1 / 1;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(
-        135deg,
-        #E7DDD0,
-        #F3E9DE
-      );
-      color: #8A7662;
-      font-size: 12px;
-      text-align: center;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .memory-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .memory-card p {
-      margin: 12px 2px 0;
-      color: var(--warm-brown);
-      font-size: 12px;
-      line-height: 1.8;
+        margin-top: 10px;
+        text-align: center;
     }
+
 
     /* 感谢留言 */
 
@@ -784,7 +779,7 @@
         <div class="photo-frame">
           <!-- 以后将 jasmine.jpg 放在 index.html 同一文件夹 -->
           <div class="photo-placeholder">
-            在这里放入 Jasmine 的个人照片
+            <img src="people/jasmine.jpeg" alt="">
           </div>
         </div>
 
@@ -808,22 +803,22 @@
 
         <div class="memory-grid">
           <div class="memory-card">
-            <div class="memory-image">回忆照片 01</div>
+            <div class="memory-image"><img src="jasmine related/image3.jpeg" alt=""></div>
             <p>一起服事的日子</p>
           </div>
 
           <div class="memory-card">
-            <div class="memory-image">回忆照片 02</div>
+            <div class="memory-image"><img src="jasmine related/image4.JPG" alt=""></div>
             <p>一起欢笑的时光</p>
           </div>
 
           <div class="memory-card">
-            <div class="memory-image">回忆照片 03</div>
+            <div class="memory-image"><img src="jasmine related/image1.JPG" alt=""></div>
             <p>一起成长的旅程</p>
           </div>
 
           <div class="memory-card">
-            <div class="memory-image">回忆照片 04</div>
+            <div class="memory-image"><img src="jasmine related/image5.jpeg" alt=""></div>
             <p>值得珍藏的瞬间</p>
           </div>
         </div>
@@ -897,7 +892,7 @@
         <br><br>
 
         <a href="message.html" class="hearts-button">
-            READ OUR MESSAGES ♡
+            开启我们的信息 ♡
         </a>
         <!-- 后续可增加更多真实的祝福留言 -->
       </section>
